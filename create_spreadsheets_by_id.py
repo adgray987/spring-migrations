@@ -30,22 +30,21 @@ records.info()
 
 
 
-# Put all IDs into a sorted list
+# Put all IDs into list
 ids =[]
 for row in records[id_column].unique():
     ids.append(row)
 #ids.sort()
-print(ids[0:10])
+print(ids)
 
 print(f"{len(ids)} unique ids")
 
 
 
-# Create individual spreasheets for every group of rows correspondeing to the IDs
-# Length of list of ids will equal the number of spreadsheets
+# Create individual spreadsheets for every group of IDs from ids# Length of list of ids will equal the number of spreadsheets
 # .dropna() method will remove empty columns; different spreadsheets will have different columns
 # depending on which columns are empty for that ID
 for i in ids:
     df = records[records[id_column] == i].dropna(axis=1, how="all")
-    # Change file path below as needed
-    df.to_excel(f"{i}.xlsx")
+    # Change file path as needed
+    df.to_excel(f"{i}.xlsx", index=False)
